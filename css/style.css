@@ -1,50 +1,3 @@
-/* CSS RESET */
-
-/*
-html, body, div, span, 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-img, ins, kbd, q, s, samp,
-small, strike, strong, 
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
-}
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
- 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-*/
-
-/* FOR TESTING PURPOSE ONLY */
-
-.test {
-    border: 1px solid red;
-}
-
 /* STANDARD */
 
 html {
@@ -56,6 +9,26 @@ body {
 	background: #FFE1AD;
     font-family: 'FangSong','Times New Roman', Times, serif;
     height: 100%;
+}
+
+a, img {
+   cursor: pointer;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
 }
 
 .row {
@@ -175,13 +148,13 @@ body {
     text-align: right;
 }
 
-.recent-sort {
+.active-sort {
     font-style: normal;
     color: #A7A9AC;
     text-decoration: underline;
 }
 
-.hot-sort {
+.inactive-sort {
     font-style: normal;
     color: royalblue;
 }
@@ -459,10 +432,6 @@ body {
 .add-btn-question {
     margin-left: -7px;
     padding-left: 1px;
-}
-
-.discussion-date {
-    font-style: normal;
 }
 
 .question-height {
@@ -832,15 +801,15 @@ body {
     margin-top: -10px;
 }
 
-.profile-others-names {
-    padding: 0px 100px;
+.profile-styler {
+    padding: 10px 100px;
     margin-bottom: 25px;
     text-align: center;
 }
 
 .others-name {
     width: 80px;
-    margin: 0 5px;
+    margin: 20px 0 5px 0;
     font-size: 14px;
     display: inline-flex;
     justify-content: center;

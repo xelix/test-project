@@ -1,0 +1,305 @@
+﻿<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Questions</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
+	  integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" 
+	  crossorigin="anonymous">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/ngDialog.css">
+</head>
+<body ng-controller="MyCtrl">	
+<nav class="navbar">
+	<div class="row nabvar-row">
+		<div class="row upper-navbar">
+			<div class="col-md-1 back-btn-container">
+				<div class="back-btn">&lt;</div>
+			</div>
+			<div class="col-md-10">
+				<div class="col-md-9">
+					<div class="col-md-3 header-top">QUESTIONS</div>
+					<div class="col-md-1 add-btn-container">
+						<div class="add-btn">+</div>
+					</div>
+					<div class="col-md-4"></div>
+					<div class="col-md-4 radio-btn-container">
+						<div class="radio"><input type="radio" />All questions</div>
+						<div class="radio"><input type="radio"  checked="checked" />My shelf</div>
+					</div>				
+				</div>
+				<div class="col-md-3 sort-btn">
+					Sort by: <span class="recent-sort">recent</span> or <span class="hot-sort">hot</span>
+				</div>
+			</div>
+			<div class="col-md-1"></div>		
+		</div>
+		<div class="row lower-navbar">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 search-bar">
+				<form>
+					<div class="col-md-9 search-bar">
+						<input type="text" class="form-control" placeholder="Search questions">
+					</div>
+					<div class="col-md-3 search-btn">
+						<button type="submit" class="btn btn-default">SEARCH</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+</nav>
+
+<section id="main">
+	<div class="row main-row main-page-row">
+		<div class="col-md-12 main-container">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 main-content">
+				<div class="row questions-row">
+					<div class="col-md-9 questions-main">
+						<div class="row questions-header">
+							<div class="col-md-2 questions-avatar">
+								<img class="avatar" src="../img/av4.jpg" />
+							</div>
+							<div class="col-md-10 questions-name">
+								<div class="questions-asking"><p class="author-name">Eva</p>&nbsp;&nbsp; IS ASKING:</div>
+								<p class="questions-title">Will insulin make my patient gain weight?</p>
+							</div>
+						</div>
+						<div class="row questions-details">
+							<div class="col-md-2 questions-author-box">
+								<div class="questions-author">
+									<div class="asked-styler"></div>
+									<hr class="questions-line" />
+									<p class="questions-answer">ASKED</p>
+								</div>
+							</div>
+							<div class="col-md-2 questions-more-box">
+								<div class="questions-more">
+									<p class="activities-amount">3</p>
+									<p class="activities-txt">more<br/>activities</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av1.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av2.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av3.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av5.jpg" />
+									<hr class="questions-line-answered" />
+									<p class="questions-answer">ANSWERED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot questions-dot-answered"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row questions-blank"></div>
+					</div>
+					<div class="col-md-3 questions-sidebar">
+						<div class="row questions-sidebar-top"></div>
+						<div class="row questions-sidebar-mid">
+							<div class="col-md-12 questions-sidebar-content">
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">1 </span>related discussion</p>
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">6 </span>peers involved</p>
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">3 </span>conversations</p>
+							</div>							
+						</div>
+						<div class="row questions-sidebar-bot"></div>
+					</div>					
+				</div>
+				<div class="row questions-row">
+					<div class="col-md-9 questions-main">
+						<div class="row questions-header">
+							<div class="col-md-2 questions-avatar">
+								<img class="avatar" src="../img/av1.jpg" />
+							</div>
+							<div class="col-md-10 questions-name">
+								<div class="questions-asking"><p class="author-name">Andrew</p>&nbsp;&nbsp; IS ASKING:</div>
+								<p class="questions-title">Vegan diet in diabetes treatment?</p>
+							</div>
+						</div>
+						<div class="row questions-details">
+							<div class="col-md-2 questions-author-box">
+								<div class="questions-author">
+									<div class="asked-styler"></div>
+									<hr class="questions-line" />
+									<p class="questions-answer">ASKED</p>
+								</div>
+							</div>
+							<div class="col-md-2 questions-more-box">
+								<div class="questions-more">
+									<p class="activities-amount">6</p>
+									<p class="activities-txt">more<br/>activities</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av4.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av5.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av2.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av3.jpg" />
+									<hr class="questions-line-answered" />
+									<p class="questions-answer">ANSWERED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot questions-dot-answered"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row questions-blank"></div>
+					</div>
+					<div class="col-md-3 questions-sidebar">
+						<div class="row questions-sidebar-top"></div>
+						<div class="row questions-sidebar-mid">
+							<div class="col-md-12 questions-sidebar-content">
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">2 </span>related discussion</p>
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">9 </span>peers involved</p>
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">5 </span>conversations</p>
+							</div>							
+						</div>
+						<div class="row questions-sidebar-bot"></div>
+					</div>					
+				</div>
+				<div class="row questions-row">
+					<div class="col-md-9 questions-main">
+						<div class="row questions-header">
+							<div class="col-md-2 questions-avatar">
+								<img class="avatar" src="../img/av5.jpg" />
+							</div>
+							<div class="col-md-10 questions-name">
+								<div class="questions-asking"><p class="author-name">Joseph</p>&nbsp;&nbsp; IS ASKING:</div>
+								<p class="questions-title">Vegan diet to stop diabetes progress</p>
+							</div>
+						</div>
+						<div class="row questions-details">
+							<div class="col-md-2 questions-author-box">
+								<div class="questions-author">
+									<div class="asked-styler"></div>
+									<hr class="questions-line" />
+									<p class="questions-answer">ASKED</p>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av1.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av4.jpg" />
+									<hr class="questions-line" />
+									<p class="questions-answer">COMMENTED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 questions-peer-box">
+								<div class="questions-peer">
+									<img class="avatar" src="../img/av3.jpg" />
+									<hr class="questions-line-answered" />
+									<p class="questions-answer">ANSWERED</p>
+									<div class="questions-dot-container">
+										<div class="questions-dot questions-dot-answered"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class="row questions-blank"></div>
+					</div>
+					<div class="col-md-3 questions-sidebar">
+						<div class="row questions-sidebar-top"></div>
+						<div class="row questions-sidebar-mid">
+							<div class="col-md-12 questions-sidebar-content">
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">5 </span>related discussion</p>
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">4 </span>peers involved</p>
+								<p class="questions-sidebar-p"><span class="questions-sidebar-amount">0 </span>conversations</p>
+							</div>							
+						</div>
+						<div class="row questions-sidebar-bot"></div>
+					</div>					
+				</div>
+				<div class="row questions-footer">
+					<p class="questions-load">load more questions</p>				
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+</section>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+<script src="../scripts/ngDialog.js"></script>
+<script src="../scripts/app.js"></script>
+</body>
+</html>

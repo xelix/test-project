@@ -1,15 +1,4 @@
-﻿<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Question</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
-	  integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" 
-	  crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>	
-<nav class="navbar">
+﻿<nav class="navbar">
 	<div class="row nabvar-row">
 		<div class="row upper-navbar">
 			<div class="col-md-1 back-btn-container">
@@ -23,8 +12,8 @@
 					</div>
 					<div class="col-md-6"></div>				
 				</div>
-				<div class="col-md-5 sort-btn">
-					Last time discussed <span class="discussion-date">&nbsp; 1 &nbsp;</span> day ago</span>
+				<div class="col-md-5 sort-btn" data-ng-repeat="comment in singleQuestion.comments | orderBy: 'date' : '-' | limitTo: 1 : 0;">
+					Last time discussed &nbsp; {{ comment.date | dateFilter }}
 				</div>
 			</div>
 			<div class="col-md-1"></div>		
@@ -41,33 +30,29 @@
 					<div class="col-md-9 questions-main">
 						<div class="row questions-header">
 							<div class="col-md-2 questions-avatar single-avatar">
-								<img class="avatar" src="img/av4.jpg" />
+								<img class="avatar" data-ng-src="img/av{{singleQuestion.authorId+1}}.jpg"  data-ng-click="openProfile(singleQuestion.authorId)" />
 							</div>
 							<div class="col-md-10 questions-name">
 								<div class="questions-asking"><p class="author-name">Eva</p>&nbsp;&nbsp; IS ASKING:</div>
-								<p class="questions-title">Will insulin make my patient gain weight?</p>
+								<p class="questions-title">{{ singleQuestion.title }}</p>
 							</div>
 						</div>
 						<div class="row questions-details single-details question-txt-side">
 							<div class="col-md-2"></div>
-							<div class="col-md-10 question-txt">
-								All my patients with diabetes should see an opthalmologist yearly for a dialated eye examination beginning at diagnosis 
-								in people with type 2 diabetes, and after 5 years in people with type 1 diabetes after puberty. 
-								Patients with know eye disease, symptoms of blurred vision in one eye, or blind spots may need to see their ophthalmologist more frequently.
-							</div>
+							<div class="col-md-10 question-txt">{{ singleQuestion.content }}</div>
 						</div>
 					</div>					
 					<div class="col-md-3 questions-sidebar">
 						<div class="row questions-sidebar-top single-sidebar-top">
-							<div class="question-follow vertical">unfollow</div>
+							<div class="question-follow vertical">{{ singleQuestion.follow ? 'unfollow' : 'follow' }}</div>
 						</div>
 						<div class="row questions-sidebar-mid single-details votes">
-							<div class="col-md-4 votes-amount">19</div>
-							<div class="col-md-5 votes-txt">upvotes</div>
+							<div class="col-md-4 votes-amount">{{ singleQuestion.votes >= 0 ? singleQuestion.votes : -singleQuestion.votes}}</div>
+							<div class="col-md-5 votes-txt">{{ singleQuestion.votes >= 0 ? 'upvotes' : 'downvotes' }}</div>
 							<div class="col-md-3 votes-icon">
-								<i class="glyphicon glyphicon-triangle-top"></i>
+								<a data-ng-click="voteQuestionUp()"><i class="glyphicon glyphicon-triangle-top"></i></a>
 								<br />
-								<i class="glyphicon glyphicon-triangle-bottom vote"></i>
+								<a data-ng-click="voteQuestionDown()"><i class="glyphicon glyphicon-triangle-bottom vote"></i></a>
 							</div>
 						</div>
 					</div>					
@@ -76,95 +61,40 @@
 					<div class="comment-btn vertical">GIVE new answer</div>
 				</div>
 				<div class="row question-footer">
-					<p class="col-md-4 comment-amount"><span class="answer-amount">2</span> peers already answered <span>Eva</span></p>				
+					<p class="col-md-4 comment-amount"><span class="answer-amount">{{ singleQuestion.comments.length }}</span> peers already answered <span>Eva</span></p>				
 				</div>				
-				
-				<div class="row questions-row question-height comment-shadow">
-					<div class="col-md-9 questions-main">
-						<div class="row comment-header">
-							<div class="col-md-2 questions-avatar single-avatar comment-avatar">
-								<img class="avatar" src="img/av3.jpg" />
-							</div>
-							<div class="col-md-10 questions-name comment-main">
-								<div class="questions-asking"><p class="author-name">Patricia</p>&nbsp;&nbsp; COMMENTED IT &nbsp;&bull; &nbsp;<span class="comment-date">yesterday</span></div>
-								<div class="question-txt comment-txt">
-								Numbers or tingling in your feet should be reported to your doctor at your regular visits.
+				<div data-ng-repeat="comment in singleQuestion.comments">
+					<div class="row questions-row question-height " data-ng-class="comment.conversation ? 'question-shadow reply' : 'comment-shadow'">
+						<div class="col-md-9 questions-main">
+							<div class="row comment-header">
+								<div class="col-md-2 questions-avatar single-avatar comment-avatar">
+									<img class="avatar" data-ng-src="img/av{{comment.authorId+1}}.jpg" data-ng-click="openProfile(comment.authorId)" />
+								</div>
+								<div class="col-md-10 questions-name comment-main" data-ng-class="comment.conversation ? 'reply-main' : ''">
+									<div class="questions-asking"><p class="author-name">{{ users[comment.authorId].name }}</p>&nbsp;&nbsp; COMMENTED IT &nbsp;&bull; &nbsp;<span class="comment-date">{{ comment.date | dateFilter }}</span></div>
+									<div class="question-txt comment-txt">{{ comment.content }}</div>
 								</div>
 							</div>
-						</div>
-					</div>					
-					<div class="col-md-3 questions-sidebar">
-						<div class="row questions-sidebar-mid single-details votes comment-votes">
-							<div class="col-md-4 votes-amount">8</div>
-							<div class="col-md-5 votes-txt">upvotes</div>
-							<div class="col-md-3 votes-icon">
-								<i class="glyphicon glyphicon-triangle-top"></i>
-								<br />
-								<i class="glyphicon glyphicon-triangle-bottom vote"></i>
-							</div>
-						</div>
-					</div>					
-				</div>
-								
-				<div class="row questions-row question-height question-shadow reply">
-					<div class="col-md-9 questions-main">
-						<div class="row comment-header">
-							<div class="col-md-2 questions-avatar single-avatar comment-avatar">
-								<img class="avatar" src="img/av2.jpg" />
-							</div>
-							<div class="col-md-10 questions-name comment-main reply-main">
-								<div class="questions-asking"><p class="author-name">David</p>&nbsp;&nbsp; COMMENTED IT &nbsp;&bull; &nbsp;<span class="comment-date">yesterday</span></div>
-								<div class="question-txt comment-txt">
-								You should check your feet daily for redness, caluses, cracks or skin breakdown.
+						</div>					
+						<div class="col-md-3 questions-sidebar" data-ng-class="comment.conversation ? 'reply-side' : ''">
+							<div class="row questions-sidebar-mid single-details votes comment-votes">
+								<div class="col-md-4 votes-amount">{{ comment.votes >= 0 ? comment.votes : -comment.votes }}</div>
+								<div class="col-md-5 votes-txt">{{ comment.votes >= 0 ? 'upvotes' : 'downvotes' }}</div>
+								<div class="col-md-3 votes-icon">
+									<a data-ng-click="voteUp(comment.id)"><i class="glyphicon glyphicon-triangle-top"></i></a>
+									<br />
+									<a data-ng-click="voteDown(comment.id)"><i class="glyphicon glyphicon-triangle-bottom vote"></i></a>
 								</div>
 							</div>
-						</div>
-					</div>					
-					<div class="col-md-3 questions-sidebar reply-side">
-						<div class="row questions-sidebar-mid single-details votes comment-votes">
-							<div class="col-md-4 votes-amount">2</div>
-							<div class="col-md-5 votes-txt">upvotes</div>
-							<div class="col-md-3 votes-icon">
-								<i class="glyphicon glyphicon-triangle-top"></i>
-								<br />
-								<i class="glyphicon glyphicon-triangle-bottom vote"></i>
-							</div>
-						</div>
-					</div>					
-				</div>
-				<div class="comment-btn-container">
-					<div class="comment-btn vertical">CONTINUE discussion</div>
-				</div>
-				<br />
-				
-				<div class="row questions-row question-height comment-shadow">
-					<div class="col-md-9 questions-main">
-						<div class="row comment-header">
-							<div class="col-md-2 questions-avatar single-avatar comment-avatar">
-								<img class="avatar" src="img/av5.jpg" />
-							</div>
-							<div class="col-md-10 questions-name comment-main">
-								<div class="questions-asking"><p class="author-name">Joseph</p>&nbsp;&nbsp; COMMENTED IT &nbsp;&bull; &nbsp;<span class="comment-date">two days</span></div>
-								<div class="question-txt comment-txt">
-								When your blood sugar is low, your body gives out signs that you need food. Different people have different symptoms. You will learn to know your symptoms.
-								</div>
-							</div>
-						</div>
-					</div>					
-					<div class="col-md-3 questions-sidebar">
-						<div class="row questions-sidebar-mid single-details votes comment-votes">
-							<div class="col-md-4 votes-amount">3</div>
-							<div class="col-md-5 votes-txt">downvotes</div>
-							<div class="col-md-3 votes-icon">
-								<i class="glyphicon glyphicon-triangle-top"></i>
-								<br />
-								<i class="glyphicon glyphicon-triangle-bottom vote"></i>
-							</div>
-						</div>
-					</div>					
-				</div>
-				<div class="comment-btn-container">
-					<div class="comment-btn vertical">COMMENT</div>
+						</div>					
+					</div>
+					<div class="comment-btn-container" data-ng-show="comment.conversation === true && comment.last === true">
+						<div class="comment-btn vertical">CONTINUE discussion</div>
+					</div>
+					<div class="comment-btn-container" data-ng-show="comment.conversation === false && comment.last === true">
+						<div class="comment-btn vertical">COMMENT</div>
+					</div>
+					<br data-ng-hide="!comment.last" />
 				</div>
 				
 			</div>
@@ -172,8 +102,4 @@
 		</div>
 	</div>
 	<div class="row single-question-page-footer"></div>
-</section>	
-	
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-</body>
-</html>
+</section>
